@@ -1,0 +1,5 @@
+[user]
+	name = shixiliufang
+[core]
+	autocrlf = false
+	safecrlf = true
