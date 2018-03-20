@@ -30,8 +30,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Yggdroot/indentLine'
+Plugin 'iamcco/markdown-preview.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 map <F2> :NERDTreeToggle<CR>
+
+" spell
+set spell
+autocmd FileType md,tex setlocal spell spelllang=en_us
