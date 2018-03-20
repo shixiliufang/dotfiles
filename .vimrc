@@ -3,6 +3,7 @@ syntax on
 "set cursorcolumn
 set cursorline
 set history=1000
+set nowrap
 set number
 set ruler
 set scrolloff=5
@@ -30,13 +31,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Yggdroot/indentLine'
-Plugin 'iamcco/markdown-preview.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
+Plugin 'suan/vim-instant-markdown'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 map <F2> :NERDTreeToggle<CR>
 
 " spell
 set spell
-autocmd FileType md,tex setlocal spell spelllang=en_us
+autocmd FileType md,tex setlocal spell spelllang=en_us,cjk
