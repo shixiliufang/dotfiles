@@ -67,5 +67,7 @@ function Build()
         exec "!clang -o %< -std=c++11 -stdlib=libc++ -Weverything -lc++ -lc++abi % && ./%<"
     elseif &filetype == 'python'
         exec "!python3 %"
+    elseif &filetype == 'tex'
+        exec "!xelatex % && firefox ./%<" . ".pdf"
     endif
 endfunction
