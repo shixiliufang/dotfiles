@@ -1,3 +1,9 @@
+" Basic
+filetype on
+filetype plugin on
+set nocompatible
+set title
+
 " Display
 syntax on
 "set cursorcolumn
@@ -18,12 +24,6 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set ttyfast
 
-" General
-filetype on
-filetype plugin on
-set nocompatible
-set title
-
 " Indentation
 filetype indent on
 set expandtab
@@ -35,6 +35,8 @@ set tabstop=4
 " Mapping
 map <F2> :NERDTreeToggle<CR>
 map <F5> :call Build()<CR>
+map <C-K> :py3f ~/.vim/clang-format.py<cr>
+imap <C-K> <c-o>:py3f ~/.vim/clang-format.py<cr>
 
 " Plugin
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -59,7 +61,7 @@ set smartcase
 autocmd FileType md,tex setlocal spell spelllang=en_us,cjk
 
 " Function
-function Build()
+function! Build()
     exec "w"
     if &filetype == 'c'
         exec "!clang -o %< -Weverything % && ./%<"
