@@ -1,4 +1,4 @@
-" display
+" Display
 syntax on
 "set cursorcolumn
 set cursorline
@@ -10,14 +10,21 @@ set scrolloff=5
 set showcmd
 set showmode
 
-" general
+" Encoding
+set binary
+set bomb
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttyfast
+
+" General
 filetype on
 filetype plugin on
-set encoding=utf-8
 set nocompatible
 set title
 
-" indentation
+" Indentation
 filetype indent on
 set expandtab
 set shiftwidth=4
@@ -25,7 +32,11 @@ set smarttab
 set softtabstop=4
 set tabstop=4
 
-" plugin
+" Mapping
+map <F2> :NERDTreeToggle<CR>
+map <F5> :call Build()<CR>
+
+" Plugin
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -36,8 +47,25 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
-map <F2> :NERDTreeToggle<CR>
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
-" spell
-set spell
+" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Spell
 autocmd FileType md,tex setlocal spell spelllang=en_us,cjk
+
+" Function
+function Build()
+    exec "w"
+    if &filetype == 'c'
+        exec "!clang -o %< -Weverything % && ./%<"
+    elseif &filetype == 'cpp'
+        exec "!clang -o %< -std=c++11 -stdlib=libc++ -Weverything -lc++ -lc++abi % && ./%<"
+    elseif &filetype == 'python'
+        exec "!python3 %"
+    endif
+endfunction
